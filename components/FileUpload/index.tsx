@@ -1,29 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, ButtonContainer, FileName, FlexContainer, InputFile, Label } from './styles';
 
 interface FileUploadProps {
   onFileUpload: (file: File) => void;
+  onSubmit: () => void;
+  fileToUpload: File | null;
+  onCancel: () => void;
 }
 
-const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload, onSubmit, fileToUpload, onCancel }) => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(fileToUpload);
+
+  useEffect(() => {
+    setSelectedFile(fileToUpload);
+  }, [fileToUpload]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
       setSelectedFile(file);
+      onFileUpload(file);
     }
   };
 
   const handleSubmit = () => {
     if (selectedFile) {
-      onFileUpload(selectedFile);
-      setSelectedFile(null); // Limpa o arquivo selecionado após o envio
+      onSubmit(); // Notificar o componente pai para abrir o modal
     }
   };
 
   const handleCancel = () => {
-    setSelectedFile(null); // Limpa o arquivo selecionado sem fazer upload
+    setSelectedFile(null); // Limpar o arquivo selecionado sem fazer upload
+    onCancel(); // Notificar o componente pai sobre o cancelamento
   };
 
   return (
@@ -51,4 +59,4 @@ const FileUpload: React.FC<FileUploadProps> = ({ onFileUpload }) => {
   );
 };
 
-export default FileUpload;
+export default FileUpload

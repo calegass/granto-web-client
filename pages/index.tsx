@@ -37,7 +37,7 @@ export default function Home() {
       } else {
         console.log('Autenticação necessária antes do envio');
       }
-      setFileToUpload(null);
+      setFileToUpload(null); // Limpar o arquivo após o envio ou autenticação
     }
   };
 
@@ -45,7 +45,7 @@ export default function Home() {
     setShowAuthModal(false);
     if (fileToUpload) {
       await handleFileUpload(fileToUpload);
-      setFileToUpload(null);
+      setFileToUpload(null); // Limpar o arquivo após o envio
     }
   };
 
@@ -55,7 +55,16 @@ export default function Home() {
 
   const handleFileUploadPrompt = (file: File) => {
     setFileToUpload(file);
-    setShowAuthModal(true);
+  };
+
+  const handleFileSubmit = () => {
+    if (fileToUpload) {
+      setShowAuthModal(true);
+    }
+  };
+
+  const handleCancelFileUpload = () => {
+    setFileToUpload(null); // Limpar o arquivo selecionado ao cancelar
   };
 
   return (
@@ -68,7 +77,12 @@ export default function Home() {
           Get started by editing
           <CodeTag>pages/index.tsx</CodeTag>
         </Description>
-        <FileUpload onFileUpload={handleFileUploadPrompt} />
+        <FileUpload
+          onFileUpload={handleFileUploadPrompt}
+          onSubmit={handleFileSubmit}
+          fileToUpload={fileToUpload}
+          onCancel={handleCancelFileUpload}
+        />
         <AuthModal
           isOpen={showAuthModal}
           onClose={handleCloseModal}

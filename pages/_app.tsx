@@ -10,7 +10,7 @@ import Head from "next/head";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "@/context/AuthContext";
 
-const theme: DefaultTheme = {
+export const theme: DefaultTheme = {
   colors: {
     primary: "#111",
     secondary: "#0070f3",
