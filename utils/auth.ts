@@ -3,7 +3,6 @@ import axiosInstance from './axiosInstance';
 
 export const login = async (email: string, password: string) => {
   if (email === 'default@example.com' && password === 'default') return 'token-example'; // apenas para fins de demonstração
-
   try {
     const response = await axiosInstance.post('/login', { email, password });
     return response.data.token; // assuming your API returns a token

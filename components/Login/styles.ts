@@ -60,7 +60,7 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  background-color: #1e1e1e;
+  background-color: #4510A3;
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -73,7 +73,7 @@ export const ErrorMessage = styled.p`
   margin-bottom: 1rem;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   display: flex;
   flex-direction: column;
 
@@ -96,7 +96,7 @@ export const Form = styled.div`
 
   button {
     padding: 0.75rem 1.5rem;
-    background-color: #0070f3;
+    background-color: #0CD2AB;
     color: white;
     border: none;
     border-radius: 4px;
@@ -122,8 +122,8 @@ export const ButtonContainer = styled.div`
 export const ForgotPassword = styled.a`
   display: block;
   margin-bottom: 1rem;
-  text-align: right;
-  color: #0070f3;
+  text-align: center;
+  color: #ddd;
   text-decoration: none;
   font-size: 0.875rem;
 

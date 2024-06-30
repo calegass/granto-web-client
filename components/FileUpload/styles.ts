@@ -25,8 +25,8 @@ export const Label = styled.label`
 
     &:hover,
     :active {
-        color: #0070f3;
-        border-color: #0070f3;
+        color: #0CD2AB;
+        border-color: #0CD2AB;
     }
 
     span {
