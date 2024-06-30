@@ -62,6 +62,18 @@ const Navbar = () => {
     }
   }, [loggedIn]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <S.Nav>
@@ -82,10 +94,8 @@ const Navbar = () => {
                 <S.NavLink>Sobre</S.NavLink>
               </Link>
             </li>
-
             {loggedIn ? (
-              <>
-                <li>
+              <li>
                   <div ref={dropdownRef}>
                     <S.NavButton onClick={() => setDropdownOpen(!isDropdownOpen)} aria-label="User menu">
                       {email}
@@ -102,7 +112,6 @@ const Navbar = () => {
                     )}
                   </div>
                 </li>
-              </>
             ) : (
               <li>
                 <S.NavButton onClick={() => setLoginOpen(true)} aria-label="Open login modal">

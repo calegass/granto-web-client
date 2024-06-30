@@ -27,12 +27,12 @@ export const Logo = styled.div`
     button {
         background: none;
         border: none;
-        color: #333;
+        color: #ddd;
         text-decoration: none;
         cursor: pointer;
         font-size: 1.5rem;
         &:hover {
-            color: #555;
+            color: #0CD2AB;
         }
     }
 `;
