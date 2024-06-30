@@ -42,7 +42,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>Scriptors - Projeto</title>
+      {/* GRANTO SEGUROS: Interpretando documentos com */}
+      {/* Inteligência Artificial */}
+        <title>Scriptors - GRANTO SEGUROS: Interpretando documentos Inteligência Artificial!</title>
         <meta name="description" content="scriptors project" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
