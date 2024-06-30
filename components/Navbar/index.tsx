@@ -1,5 +1,5 @@
 // components/Navbar.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as S from './styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -9,8 +9,10 @@ import Login from '@/components/Login';
 const Navbar = () => {
   const { loggedIn, logout } = useAuth();
   const [isLoginOpen, setLoginOpen] = useState(false);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [email, setEmail] = useState<string | null>(null); // Adicionado estado para o email
   const router = useRouter();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleNavigation = (path: string) => {
     if (router.asPath !== path) {
@@ -38,6 +40,18 @@ const Navbar = () => {
     }
   }, [loggedIn]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <>
       <S.Nav>
@@ -49,29 +63,28 @@ const Navbar = () => {
           </S.Logo>
           <S.NavLinks>
             <li>
-              <Link href="/">
-                <S.NavLink>Home</S.NavLink>
-              </Link>
-            </li>
-            <li>
               <Link href="/about">
                 <S.NavLink>Sobre</S.NavLink>
               </Link>
             </li>
-
             {loggedIn ? (
               <>
                 <li>
-                  <Link href="/profile">
-                    <S.NavLink>
+                  <div ref={dropdownRef}>
+                    <button onClick={() => setDropdownOpen(!isDropdownOpen)} aria-label="User menu">
                       {email}
-                    </S.NavLink>
-                  </Link>
-                </li>
-                <li>
-                  <button onClick={handleLogout} aria-label="Logout">
-                    Sair
-                  </button>
+                    </button>
+                    {isDropdownOpen && (
+                      <S.DropdownMenu>
+                        <Link href="/profile">
+                          <S.DropdownItem>Meus arquivos</S.DropdownItem>
+                        </Link>
+                        <S.DropdownButton onClick={handleLogout} aria-label="Logout">
+                          Sair
+                        </S.DropdownButton>
+                      </S.DropdownMenu>
+                    )}
+                  </div>
                 </li>
               </>
             ) : (
