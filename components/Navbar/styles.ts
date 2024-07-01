@@ -1,3 +1,4 @@
+// styles.ts
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
@@ -39,28 +40,53 @@ export const NavLinks = styled.ul`
     list-style: none;
     display: flex;
     gap: 1.5rem;
-    li {
-        button {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 1rem;
-            cursor: pointer;
-            &:hover {
-                color: #ddd;
-            }
-        }
+    align-items: center; // Adiciona o alinhamento vertical
+`;
+
+export const NavButton = styled.button`
+    padding: 0.75rem 1.5rem;
+    background-color: ${(props) => props.theme.colors.granto_button};
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: ${(props) => props.theme.colors.granto_button_hover};
     }
 `;
 
-export const NavLink = styled.button`
+export const NavLink = styled.a`
     background: none;
     border: none;
-    color: inherit;
+    color: white;
     font: inherit;
     cursor: pointer;
     outline: inherit;
+    display: flex;
+    align-items: center; // Garante que o link esteja centralizado verticalmente
+    text-decoration: none;
     &:hover {
         text-decoration: underline;
+    }
+`;
+
+export const ProfileLink = styled.a`
+    padding: 0.75rem 1.5rem;
+    background-color: ${(props) => props.theme.colors.granto_button};
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center; // Garante que o link esteja centralizado verticalmente
+    text-decoration: none;
+
+    &:hover {
+        background-color: ${(props) => props.theme.colors.granto_button_hover};
     }
 `;

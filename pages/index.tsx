@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Container, Main, Title, Description, CodeTag } from "@/components/sharedstyles";
 import FileUpload from "@/components/FileUpload";
 import { AuthModal } from "@/components/AuthModal";
+import Login from "@/components/Login";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Home() {
-  const { loggedIn } = useAuth();
+  const { loggedIn, login } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false); // Estado para o modal de login
   const [fileToUpload, setFileToUpload] = useState<File | null>(null);
 
   const handleFileUpload = async (file: File) => {
@@ -31,14 +33,7 @@ export default function Home() {
 
   const handleAuthenticateAndUpload = async () => {
     setShowAuthModal(false);
-    if (fileToUpload) {
-      if (loggedIn) {
-        await handleFileUpload(fileToUpload);
-      } else {
-        console.log('Autenticação necessária antes do envio');
-      }
-      setFileToUpload(null); // Limpar o arquivo após o envio ou autenticação
-    }
+    setShowLoginModal(true); // Abrir o modal de login
   };
 
   const handleUploadWithoutAuth = async () => {
@@ -53,13 +48,25 @@ export default function Home() {
     setShowAuthModal(false); // Fechar o modal sem limpar fileToUpload
   };
 
+  const handleLoginSuccess = () => {
+    setShowLoginModal(false); // Fechar o modal de login após o login bem-sucedido
+    if (fileToUpload) {
+      handleFileUpload(fileToUpload);
+      setFileToUpload(null); // Limpar o arquivo após o envio
+    }
+  };
+
   const handleFileUploadPrompt = (file: File) => {
     setFileToUpload(file);
   };
 
   const handleFileSubmit = () => {
     if (fileToUpload) {
-      setShowAuthModal(true);
+      if (loggedIn) {
+        handleAuthenticateAndUpload();
+      } else {
+        setShowAuthModal(true);
+      }
     }
   };
 
@@ -88,6 +95,12 @@ export default function Home() {
           onClose={handleCloseModal}
           onAuthenticate={handleAuthenticateAndUpload}
           onUploadWithoutAuth={handleUploadWithoutAuth}
+          onLoginOpen={() => setShowLoginModal(true)} // Passar a função para abrir o modal de login
+        />
+        <Login
+          isOpen={showLoginModal}
+          onClose={() => setShowLoginModal(false)}
+          onSuccess={handleLoginSuccess}
         />
       </Main>
     </Container>

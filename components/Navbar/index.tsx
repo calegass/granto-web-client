@@ -9,7 +9,7 @@ import Login from '@/components/Login';
 const Navbar = () => {
   const { loggedIn, logout } = useAuth();
   const [isLoginOpen, setLoginOpen] = useState(false);
-  const [email, setEmail] = useState<string | null>(null); // Adicionado estado para o email
+  const [email, setEmail] = useState<string | null>(null);
   const router = useRouter();
 
   const handleNavigation = (path: string) => {
@@ -27,8 +27,8 @@ const Navbar = () => {
   };
 
   const handleLoginSuccess = () => {
-    setLoginOpen(false); // Fechar o modal de login
-    setEmail(localStorage.getItem('email')); // Atualizar o email após login
+    setLoginOpen(false);
+    setEmail(localStorage.getItem('email'));
   };
 
   useEffect(() => {
@@ -49,12 +49,12 @@ const Navbar = () => {
           </S.Logo>
           <S.NavLinks>
             <li>
-              <Link href="/">
+              <Link href="/" passHref>
                 <S.NavLink>Home</S.NavLink>
               </Link>
             </li>
             <li>
-              <Link href="/about">
+              <Link href="/about" passHref>
                 <S.NavLink>Sobre</S.NavLink>
               </Link>
             </li>
@@ -62,23 +62,23 @@ const Navbar = () => {
             {loggedIn ? (
               <>
                 <li>
-                  <Link href="/profile">
-                    <S.NavLink>
-                      {email}
-                    </S.NavLink>
+                  <Link href="/profile" passHref>
+                    <S.ProfileLink>
+                      Histórico: {email}
+                    </S.ProfileLink>
                   </Link>
                 </li>
                 <li>
-                  <button onClick={handleLogout} aria-label="Logout">
+                  <S.NavButton onClick={handleLogout} aria-label="Logout">
                     Sair
-                  </button>
+                  </S.NavButton>
                 </li>
               </>
             ) : (
               <li>
-                <button onClick={() => setLoginOpen(true)} aria-label="Open login modal">
+                <S.NavButton onClick={() => setLoginOpen(true)} aria-label="Open login modal">
                   Autenticar
-                </button>
+                </S.NavButton>
               </li>
             )}
           </S.NavLinks>

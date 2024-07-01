@@ -31,6 +31,11 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
     }
   };
 
+  const handleRegister = () => {
+    console.log('handleRegister chamado'); // Log para depuração
+    // Adicione o código para o registro
+  }
+
   return (
     <S.Backdrop>
       <S.ModalContainer>
