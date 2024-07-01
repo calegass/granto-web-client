@@ -1,11 +1,13 @@
-// styles.ts
-
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
-    background-color: ${(props) => props.theme.colors.primary};
+    background-color: ${(props) => props.theme.colors.granto_color};
     padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 10;
+    position: relative;
 `;
 
 export const NavContainer = styled.div`

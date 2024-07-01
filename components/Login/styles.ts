@@ -28,8 +28,8 @@ export const ModalTitle = styled.h2`
 `;
 
 export const ModalButton = styled.button`
-    background-color: #0070f3;
-    color: white;
+    background-color: ${(props) => props.theme.colors.granto_color};
+    color: ${(props) => props.theme.colors.granto_button};
     border: none;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -38,7 +38,7 @@ export const ModalButton = styled.button`
     transition: background-color 0.3s ease;
 
     &:hover {
-        background-color: #0056b3;
+        background-color: ${(props) => props.theme.colors.granto_button_hover};
     }
 
     & + & {
@@ -60,7 +60,7 @@ export const Backdrop = styled.div`
 `;
 
 export const ModalContainer = styled.div`
-  background-color: #1e1e1e;
+  background-color: ${(props) => props.theme.colors.granto_color};
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -96,7 +96,7 @@ export const Form = styled.div`
 
   button {
     padding: 0.75rem 1.5rem;
-    background-color: #0070f3;
+    background-color: ${(props) => props.theme.colors.granto_button};
     color: white;
     border: none;
     border-radius: 4px;
@@ -105,7 +105,7 @@ export const Form = styled.div`
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #005bb5;
+      background-color: ${(props) => props.theme.colors.granto_button_hover};
     }
   }
 `;
@@ -123,7 +123,7 @@ export const ForgotPassword = styled.a`
   display: block;
   margin-bottom: 1rem;
   text-align: right;
-  color: #0070f3;
+  color: ${(props) => props.theme.colors.granto_button};
   text-decoration: none;
   font-size: 0.875rem;
 

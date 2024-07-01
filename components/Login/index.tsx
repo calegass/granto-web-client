@@ -17,9 +17,13 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
   if (!isOpen) return null;
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // Evita o comportamento padrão de submit do formulário
+    console.log('handleLogin chamado'); // Log para depuração
+
     try {
       await login(email, password);
+      console.log(localStorage.getItem('token')); // Log para depuração
+      console.log('Login bem-sucedido'); // Log para depuração
       onSuccess();
     } catch (error: any) {
       console.error('Erro ao fazer login:', error.message);
@@ -31,7 +35,7 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
     <S.Backdrop>
       <S.ModalContainer>
         <S.CloseButton onClick={onClose}>&times;</S.CloseButton>
-        <S.Form onSubmit={handleLogin}>
+        <S.Form>
           <S.Title>Faça o seu login ou registre-se</S.Title>
           {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
           <input
@@ -50,7 +54,7 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
           />
           <S.ForgotPassword href="/auth/forgot-password">Esqueci minha senha</S.ForgotPassword>
           <S.ButtonContainer>
-            <button type="submit">Entrar</button>
+            <button type="submit" onClick={handleLogin}>Entrar</button>
             <button type="button">Registrar</button>
           </S.ButtonContainer>
         </S.Form>

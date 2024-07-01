@@ -14,6 +14,9 @@ export const theme: DefaultTheme = {
   colors: {
     primary: "#111",
     secondary: "#0070f3",
+    granto_color: "#4510A3",
+    granto_button: "#0CD2AB",
+    granto_button_hover: "#08ba94",
   },
 };
 
