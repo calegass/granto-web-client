@@ -91,3 +91,28 @@ export const ProfileLink = styled.a`
         background-color: ${(props) => props.theme.colors.granto_button_hover};
     }
 `;
+
+export const DropdownMenu = styled.div`
+  position: absolute;
+  background: #4510A3;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+  z-index: 1000;
+  margin-top: 8px;
+`;
+
+export const DropdownItem = styled.a`
+  display: block;
+  padding: 8px 16px;
+  cursor: pointer;
+  color: #fff;
+  &:hover {
+    color: #0CD2AB;
+  }
+`;
+
+export const DropdownButton = styled.button`
+  display: block;
+  padding: 8px 16px;
+  cursor: pointer;
+`;
