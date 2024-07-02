@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
-    background-color: #4510A3;
+    background-color: ${(props) => props.theme.colors.granto_color};
     color: #fff;
-    //padding: 0.1rem 1rem;
-    text-align: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.5);
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    z-index: 10;
+    position: relative; // Change to relative
+    margin-top: 2rem; // Add margin-top to push footer down
 `;
 
 const FooterContent = styled.div`

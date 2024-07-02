@@ -2,17 +2,26 @@ import React, { useState, useEffect } from 'react';
 import Link from "next/link";
 import Head from "next/head";
 import { Container, Main, Title, Description } from "@/components/sharedstyles";
-import FileListWithPagination from '@/components/FileListPagination/FileListPagination';
+import FileListWithPagination from '@/components/FileListPagination';
+import {useRouter} from "next/router";
+import {useAuth} from "@/context/AuthContext";
 
 interface MyFile {
-    id: string;
-    name: string;
-    uploadDate: string;
+  id: string;
+  name: string;
+  uploadDate: string;
 }
 
-
 const Profile = () => {
+  const { loggedIn } = useAuth();
+  const router = useRouter();
   const [files, setFiles] = useState<MyFile[]>([]);
+
+  useEffect(() => {
+    if (!loggedIn) {
+      router.push('/'); // Redireciona para a tela principal se não estiver logado
+    }
+  }, [loggedIn, router]);
 
 //   useEffect(() => {
 //     // Fetch files from the server (substitute with your actual API endpoint)

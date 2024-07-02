@@ -6,7 +6,7 @@ export default function About() {
   return (
     <Container>
       <Head>
-        <title>Scriptors - Sobre</title>
+        <title>Scriptors - Termos de Serviço</title>
         <meta name="description" content="scriptors project" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
