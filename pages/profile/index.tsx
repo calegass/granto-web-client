@@ -43,15 +43,6 @@ const Profile = () => {
       { id: '7', name: 'file7.docx', uploadDate: '2024-06-07' },
       { id: '8', name: 'file8.jpg', uploadDate: '2024-06-08' },
       { id: '9', name: 'file9.png', uploadDate: '2024-06-09' },
-      { id: '1', name: 'file1.pdf', uploadDate: '2024-06-01' },
-      { id: '2', name: 'file2.docx', uploadDate: '2024-06-02' },
-      { id: '3', name: 'file3.jpg', uploadDate: '2024-06-03' },
-      { id: '4', name: 'file4.png', uploadDate: '2024-06-04' },
-      { id: '5', name: 'file5.doc', uploadDate: '2024-06-05' },
-      { id: '6', name: 'file6.pdf', uploadDate: '2024-06-06' },
-      { id: '7', name: 'file7.docx', uploadDate: '2024-06-07' },
-      { id: '8', name: 'file8.jpg', uploadDate: '2024-06-08' },
-      { id: '9', name: 'file9.png', uploadDate: '2024-06-09' },
       { id: '10', name: 'file10.doc', uploadDate: '2024-06-10' }
     ];
     setFiles(testFiles);
