@@ -12,16 +12,22 @@ interface AuthModalProps {
 const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onAuthenticate, onUploadWithoutAuth, onLoginOpen }) => {
   if (!isOpen) return null;
 
+  const handleLoginClick = () => {
+    onClose(); // Fechar o modal de autenticação
+    onLoginOpen(); // Abrir o modal de login
+  };
+
   return (
     <S.ModalBackdrop>
       <S.ModalContent>
         <S.ModalTitle>Deseja autenticar antes de enviar o arquivo?</S.ModalTitle>
-        <S.ModalButton onClick={onLoginOpen}>Autenticar e Enviar</S.ModalButton> {/* Chamando a função onLoginOpen */}
-        <S.ModalButton onClick={onUploadWithoutAuth}>Enviar sem Autenticar</S.ModalButton>
+        {/*<S.ModalButton onClick={onAuthenticate}>Sim, autenticar</S.ModalButton>*/}
+        <S.ModalButton onClick={handleLoginClick}>Sim, autenticar e enviar</S.ModalButton> {/* Atualização do botão */}
+        <S.ModalButton onClick={onUploadWithoutAuth}>Não, enviar sem autenticar</S.ModalButton>
         <S.ModalButton onClick={onClose}>Cancelar</S.ModalButton>
       </S.ModalContent>
     </S.ModalBackdrop>
   );
 };
 
-export { AuthModal };
+export default AuthModal;

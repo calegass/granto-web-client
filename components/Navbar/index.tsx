@@ -1,10 +1,11 @@
-// components/Navbar.tsx
 import React, { useState, useEffect } from 'react';
 import * as S from './styles';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';
-import Login from '@/components/Login';
+import dynamic from 'next/dynamic';
+
+const Login = dynamic(() => import('@/components/Login'), { ssr: false });
 
 const Navbar = () => {
   const { loggedIn, logout } = useAuth();
@@ -32,7 +33,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    if (loggedIn) {
+    if (typeof window !== 'undefined') {
       const storedEmail = localStorage.getItem('email');
       setEmail(storedEmail || 'Email não encontrado');
     }

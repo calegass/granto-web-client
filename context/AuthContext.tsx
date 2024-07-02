@@ -1,4 +1,3 @@
-// context/AuthContext.tsx
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
 import { isAuthenticated as checkAuth, login as loginUser, logout as logoutUser } from '@/utils/auth';
 
@@ -16,15 +15,21 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const initializeAuth = () => {
       const isAuthenticatedUser = checkAuth();
       setLoggedIn(isAuthenticatedUser);
+      setLoading(false);
     };
 
     initializeAuth();
   }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // Or a proper loading component
+  }
 
   const login = async (email: string, password: string) => {
     const token = await loginUser(email, password);

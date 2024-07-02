@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Container, Main, Title, Description, CodeTag } from "@/components/sharedstyles";
 import FileUpload from "@/components/FileUpload";
-import { AuthModal } from "@/components/AuthModal";
-import Login from "@/components/Login";
+import AuthModal from "@/components/AuthModal";
+import dynamic from 'next/dynamic';
 import { useAuth } from "@/context/AuthContext";
 
+const Login = dynamic(() => import('@/components/Login'), { ssr: false });
+
 export default function Home() {
-  const { loggedIn, login } = useAuth();
+  const { loggedIn } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false); // Estado para o modal de login
+  const [showLoginModal, setShowLoginModal] = useState(false);
   const [fileToUpload, setFileToUpload] = useState<File | null>(null);
 
   const handleFileUpload = async (file: File) => {
@@ -33,26 +35,29 @@ export default function Home() {
 
   const handleAuthenticateAndUpload = async () => {
     setShowAuthModal(false);
-    setShowLoginModal(true); // Abrir o modal de login
+    if (fileToUpload) {
+      await handleFileUpload(fileToUpload);
+      setFileToUpload(null);
+    }
   };
 
   const handleUploadWithoutAuth = async () => {
     setShowAuthModal(false);
     if (fileToUpload) {
       await handleFileUpload(fileToUpload);
-      setFileToUpload(null); // Limpar o arquivo após o envio
+      setFileToUpload(null);
     }
   };
 
   const handleCloseModal = () => {
-    setShowAuthModal(false); // Fechar o modal sem limpar fileToUpload
+    setShowAuthModal(false);
   };
 
   const handleLoginSuccess = () => {
-    setShowLoginModal(false); // Fechar o modal de login após o login bem-sucedido
+    setShowLoginModal(false);
     if (fileToUpload) {
       handleFileUpload(fileToUpload);
-      setFileToUpload(null); // Limpar o arquivo após o envio
+      setFileToUpload(null);
     }
   };
 
@@ -63,7 +68,7 @@ export default function Home() {
   const handleFileSubmit = () => {
     if (fileToUpload) {
       if (loggedIn) {
-        handleAuthenticateAndUpload();
+        handleUploadWithoutAuth(); // Direto upload
       } else {
         setShowAuthModal(true);
       }
@@ -71,7 +76,12 @@ export default function Home() {
   };
 
   const handleCancelFileUpload = () => {
-    setFileToUpload(null); // Limpar o arquivo selecionado ao cancelar
+    setFileToUpload(null);
+  };
+
+  const handleOpenLoginModal = () => {
+    setShowAuthModal(false);
+    setShowLoginModal(true);
   };
 
   return (
@@ -95,7 +105,7 @@ export default function Home() {
           onClose={handleCloseModal}
           onAuthenticate={handleAuthenticateAndUpload}
           onUploadWithoutAuth={handleUploadWithoutAuth}
-          onLoginOpen={() => setShowLoginModal(true)} // Passar a função para abrir o modal de login
+          onLoginOpen={handleOpenLoginModal} // Passando a nova função para abrir o modal de login
         />
         <Login
           isOpen={showLoginModal}
