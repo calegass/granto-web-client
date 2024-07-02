@@ -74,24 +74,6 @@ export const NavLink = styled.a`
     }
 `;
 
-export const ProfileLink = styled.a`
-    padding: 0.75rem 1.5rem;
-    background-color: ${(props) => props.theme.colors.granto_button};
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
-    display: flex;
-    align-items: center; // Garante que o link esteja centralizado verticalmente
-    text-decoration: none;
-
-    &:hover {
-        background-color: ${(props) => props.theme.colors.granto_button_hover};
-    }
-`;
-
 export const DropdownMenu = styled.div`
   position: absolute;
   background: #4510A3;
@@ -109,10 +91,4 @@ export const DropdownItem = styled.a`
   &:hover {
     color: #0CD2AB;
   }
-`;
-
-export const DropdownButton = styled.button`
-  display: block;
-  padding: 8px 16px;
-  cursor: pointer;
 `;

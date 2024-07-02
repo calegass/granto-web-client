@@ -15,6 +15,13 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
   const [error, setError] = useState<string>('');
   const modalRef = useRef<HTMLDivElement>(null);
 
+  // remover a mensagem de erro ao fechar o modal
+  useEffect(() => {
+    if (!isOpen) {
+      setError('');
+    }
+  }, [isOpen]);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
