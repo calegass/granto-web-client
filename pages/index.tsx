@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Container, Main, Title, Description, CodeTag } from "@/components/sharedstyles";
+import { Container, Main, Title, Description, A } from "@/components/sharedstyles";
 import FileUpload from "@/components/FileUpload";
 import AuthModal from "@/components/AuthModal";
 import dynamic from 'next/dynamic';
 import { useAuth } from "@/context/AuthContext";
+import Head from "next/head";
 
 const Login = dynamic(() => import('@/components/Login'), { ssr: false });
 
@@ -86,13 +87,21 @@ export default function Home() {
 
   return (
     <Container>
+      <Head>
+        <title>Scriptors - Início</title>
+        <meta name="description" content="scriptors project" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Main>
         <Title>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Bem vindo ao projeto<br/>Scriptors!
+          {/*Welcome to <a href="https://nextjs.org">Next.js!</a>*/}
         </Title>
         <Description>
-          Get started by editing
-          <CodeTag>pages/index.tsx</CodeTag>
+          Fique a vontade para explorar o projeto e fazer o upload de arquivos/contratos,<br/>
+          caso queira salvar o contrato em nossa base de dados, é necessário fazer login.<br/>
+          <br/>Mais informações sobre o projeto, <A href="/info">clique aqui</A>.
+          <br/>
         </Description>
         <FileUpload
           onFileUpload={handleFileUploadPrompt}

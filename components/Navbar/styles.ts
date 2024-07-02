@@ -9,6 +9,7 @@ export const Nav = styled.nav`
     border-bottom-right-radius: 15px;
     z-index: 10;
     position: relative;
+    margin-bottom: 2rem;  // Add margin-bottom to push content down
 `;
 
 export const NavContainer = styled.div`

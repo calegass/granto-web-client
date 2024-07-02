@@ -1,15 +1,27 @@
 import styled from "styled-components";
 import Link from "next/link";
 
-const Container = styled.div`
-  padding: 0 0.5rem;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  min-height: 100vh;
+export const A = styled.a`
+  color: ${({ theme }) => theme.colors.granto_color};
+  text-decoration: underline;
+  &:hover,
+  :focus,
+  :active {
+      color: ${({ theme }) => theme.colors.granto_button};
+    text-decoration: underline;
+  }
 `;
+
+const Container = styled.div`
+    flex-direction: column;
+    padding: 2rem 0.5rem;  // Add padding-top to accommodate navbar and padding-bottom for footer
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+`;
+
 const Main = styled.main`
   padding: 5rem 0;
   flex: 1;
@@ -20,6 +32,7 @@ const Main = styled.main`
 `;
 
 const Title = styled.h1`
+  color: rgb(50, 50, 50);
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
@@ -38,10 +51,12 @@ const Title = styled.h1`
 `;
 
 const Description = styled.p`
+  color: ${({ theme }) => theme.colors.granto_color};
   text-align: center;
   line-height: 1.5;
   font-size: 1.5rem;
 `;
+
 const CodeTag = styled.code`
   background: #fafafa;
   border-radius: 5px;

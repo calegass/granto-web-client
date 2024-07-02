@@ -45,7 +45,7 @@ const Navbar = () => {
         <S.NavContainer>
           <S.Logo>
             <button onClick={() => handleNavigation('/')} aria-label="Go to homepage">
-              Logo e Nome
+              <img src="/white-logo.png" alt="Logo" style={{ height: '40px' }} />
             </button>
           </S.Logo>
           <S.NavLinks>

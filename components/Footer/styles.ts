@@ -7,7 +7,8 @@ const FooterContainer = styled.footer`
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     z-index: 10;
-    position: relative;
+    position: relative; // Change to relative
+    margin-top: 2rem; // Add margin-top to push footer down
 `;
 
 const FooterContent = styled.div`
