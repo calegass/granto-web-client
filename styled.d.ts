@@ -8,6 +8,7 @@ declare module "styled-components" {
       granto_color: string;
       granto_button: string;
       granto_button_hover: string;
+      granto_button_disabled: string;
     };
   }
 }

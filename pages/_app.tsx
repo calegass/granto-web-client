@@ -17,6 +17,7 @@ export const theme: DefaultTheme = {
     granto_color: "#4510A3",
     granto_button: "#0CD2AB",
     granto_button_hover: "#08ba94",
+    granto_button_disabled: '#7A7A7A',
   },
 };
 

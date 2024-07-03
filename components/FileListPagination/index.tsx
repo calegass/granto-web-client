@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Pagination from '../Pagination';
+import * as S from './styles';
 
 interface MyFile {
   id: string;
@@ -28,17 +29,21 @@ const FileListWithPagination: React.FC<FileListWithPaginationProps> = ({ files, 
     setCurrentPage(page);
   };
 
+  const handleClickItemFile = () =>{
+
+  };
+
   return (
-    <div>
+    <S.FileListContainer>
       <ul>
         {currentFiles.map(file => (
-          <li key={file.id}>
-            {file.name} - {file.uploadDate}
-          </li>
+          <S.FileItem key={file.id}>
+            {file.name} - <span>{file.uploadDate}</span>
+          </S.FileItem>
         ))}
       </ul>
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
-    </div>
+    </S.FileListContainer>
   );
 };
 
