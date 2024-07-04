@@ -90,7 +90,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link href="/about" passHref>
+              <Link href="/info" passHref>
                 <S.NavLink>Sobre</S.NavLink>
               </Link>
             </li>

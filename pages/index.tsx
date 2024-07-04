@@ -10,6 +10,7 @@ import Head from "next/head";
 import axiosInstance from '@/utils/axiosInstance';
 import { useRouter } from 'next/router'; // Para redirecionamento
 import Loading from "@/components/Loading"; // Certifique-se de importar o componente de Loading
+import styled from 'styled-components';
 
 const Login = dynamic(() => import('@/components/Login'), { ssr: false });
 
@@ -107,6 +108,21 @@ export default function Home() {
     setShowLoginModal(true);
   };
 
+  const ContainerComFundoRoxo = styled.div`
+    item-align: center;
+    align-items: center;
+    justify-content: center;
+
+
+
+    display: flex;
+
+    background-color: ${({ theme }) => theme.colors.granto_color};
+    padding: 20px;
+
+    border-radius: 2rem;
+  `;
+
   return (
     <Container>
       <Head>
@@ -130,6 +146,11 @@ export default function Home() {
           fileToUpload={fileToUpload}
           onCancel={handleCancelFileUpload}
         />
+        <br/><br/><br/><br/>
+        <ContainerComFundoRoxo>
+        <img src="/granto-logo.png" alt="Scriptors" width="200" height="200" />
+        <img src="/iftm-nit-1024x146.png" alt="Scriptors" width="512" height="73" />
+        </ContainerComFundoRoxo>
         <AuthModal
           isOpen={showAuthModal}
           onClose={handleCloseModal}
