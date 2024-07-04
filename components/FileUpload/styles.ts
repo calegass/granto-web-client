@@ -52,17 +52,17 @@ export const Button = styled.button`
     padding: 1.5rem;
     font-size: 1.5rem;
     background-color: transparent;
-    color: inherit;
+    color: ${({ theme }) => theme.colors.granto_color};
     text-decoration: none;
-    border: 1px solid black;
+    border: 1px solid ${({ theme }) => theme.colors.granto_color};
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
     cursor: pointer;
 
     &:hover,
     :active {
-        color: #0070f3;
-        border-color: #0070f3;
+        color: ${({ theme }) => theme.colors.granto_button};
+        border-color: ${({ theme }) => theme.colors.granto_button};
     }
 
     span {
