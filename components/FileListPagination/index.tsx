@@ -11,9 +11,10 @@ interface MyFile {
 interface FileListWithPaginationProps {
   files: MyFile[];
   filesPerPage: number;
+  onFileClick: (file: MyFile) => void;
 }
 
-const FileListWithPagination: React.FC<FileListWithPaginationProps> = ({ files, filesPerPage }) => {
+const FileListWithPagination: React.FC<FileListWithPaginationProps> = ({ files, filesPerPage, onFileClick }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentFiles, setCurrentFiles] = useState<MyFile[]>([]);
 
@@ -29,16 +30,13 @@ const FileListWithPagination: React.FC<FileListWithPaginationProps> = ({ files, 
     setCurrentPage(page);
   };
 
-  const handleClickItemFile = () =>{
-
-  };
-
   return (
     <S.FileListContainer>
       <ul>
         {currentFiles.map(file => (
-          <S.FileItem key={file.id}>
-            {file.name} - <span>{file.uploadDate}</span>
+          <S.FileItem key={file.id} onClick={() => onFileClick(file)}>
+            <div className="file-name">{file.name}</div>
+            <span className="file-date">{file.uploadDate}</span>
           </S.FileItem>
         ))}
       </ul>

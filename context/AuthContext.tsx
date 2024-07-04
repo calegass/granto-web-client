@@ -1,9 +1,10 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
-import { isAuthenticated as checkAuth, login as loginUser, logout as logoutUser } from '@/utils/auth';
+import { isAuthenticated as checkAuth, login as loginUser, logout as logoutUser, signup as signupUser } from '@/utils/auth';
 
 interface AuthContextType {
   loggedIn: boolean;
   login: (email: string, password: string) => Promise<void>;
+  signup: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -43,8 +44,12 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setLoggedIn(false);
   };
 
+  const signup = async (email: string, password: string) => {
+    await signupUser(email, password);
+  }
+
   return (
-    <AuthContext.Provider value={{ loggedIn, login, logout }}>
+    <AuthContext.Provider value={{ loggedIn, login, logout, signup }}>
       {children}
     </AuthContext.Provider>
   );

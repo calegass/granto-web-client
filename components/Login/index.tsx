@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as S from './styles';
 import { useAuth } from '@/context/AuthContext';
 
@@ -9,16 +9,18 @@ interface LoginProps {
 }
 
 const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
-  const { login } = useAuth();
+  const { login, signup } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string>('');
+  const [successMessage, setSuccessMessage] = useState<string>('');
   const modalRef = useRef<HTMLDivElement>(null);
 
   // remover a mensagem de erro ao fechar o modal
   useEffect(() => {
     if (!isOpen) {
       setError('');
+      setSuccessMessage('');
     }
   }, [isOpen]);
 
@@ -52,10 +54,20 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
     }
   };
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     console.log('handleRegister chamado');
-    // Adicione o código para o registro
-  }
+
+    try {
+      await signup(email, password);
+      console.log('Registro bem-sucedido');
+      setSuccessMessage('Registro bem-sucedido. Por favor, faça login para confirmar.');
+      setError('');
+      setPassword('');
+    } catch (error: any) {
+      console.error('Erro ao registrar:', error.message);
+      setError('Erro ao registrar. Tente novamente.');
+    }
+  };
 
   return (
     <S.Backdrop>
@@ -64,6 +76,7 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
         <S.Form>
           <S.Title>Faça o seu login ou registre-se</S.Title>
           {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
+          {successMessage && <S.SuccessMessage>{successMessage}</S.SuccessMessage>}
           <input
             type="email"
             value={email}
@@ -81,7 +94,7 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
           <S.ForgotPassword href="/auth/forgot-password">Esqueci minha senha</S.ForgotPassword>
           <S.ButtonContainer>
             <button type="submit" onClick={handleLogin}>Entrar</button>
-            <button type="button" onClick={handleRegister}>Registrar</button>
+            <button type="button" onClick={handleRegister} disabled={!!successMessage}>Registrar</button>
           </S.ButtonContainer>
         </S.Form>
       </S.ModalContainer>

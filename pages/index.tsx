@@ -1,3 +1,5 @@
+// pages/index.tsx (ou Home.tsx)
+
 import React, { useState } from 'react';
 import { Container, Main, Title, Description, A } from "@/components/sharedstyles";
 import FileUpload from "@/components/FileUpload";
@@ -5,6 +7,9 @@ import AuthModal from "@/components/AuthModal";
 import dynamic from 'next/dynamic';
 import { useAuth } from "@/context/AuthContext";
 import Head from "next/head";
+import axiosInstance from '@/utils/axiosInstance';
+import { useRouter } from 'next/router'; // Para redirecionamento
+import Loading from "@/components/Loading"; // Certifique-se de importar o componente de Loading
 
 const Login = dynamic(() => import('@/components/Login'), { ssr: false });
 
@@ -13,24 +18,41 @@ export default function Home() {
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [fileToUpload, setFileToUpload] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false); // Estado para o componente de loading
+  const router = useRouter(); // Hook para redirecionamento
 
   const handleFileUpload = async (file: File) => {
-    try {
-      const formData = new FormData();
-      formData.append('file', file);
+    setLoading(true); // Ativar o loading
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('query',
+        'RESPONDA EM PORTUGUÊS: ' +
+        'Você está integrado com um leitor de contratos (apenas contratos) e a sua resposta já será mostrada para o usuário final que extrai informações chave, portanto: ' +
+        'Extraia informações específicas, como objeto, valor, prazo, entre outras. Essa solução será importante para otimizar operações, especialmente no que diz respeito à cotação e formalização de seguros.' +
+        'Preciso de: ' +
+        'CNPJs; ' +
+        'Valores numéricos que mensuram valor monetário; ' +
+        'Classificação de acordo com palavras encontradas no texto; ' +
+        'Empresa Contratante; ' +
+        'Empresa Contratada; ' +
+        'Vigência do contrato.'
+        
+      );
+    formData.append('user_id', localStorage.getItem('token') || 'token-not-found');
 
-      const response = await fetch('/api/upload', {
-        method: 'POST',
-        body: formData,
+    try {
+      const response = await axiosInstance.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
 
-      if (response.ok) {
-        console.log('Arquivo enviado com sucesso!');
-      } else {
-        console.error('Erro ao enviar arquivo:', response.statusText);
-      }
+      console.log('Arquivo enviado com sucesso:', response.data);
+      setLoading(false); // Desativar o loading
+      router.push(`/file/${response.data.file_id}`); // Redirecionar para a página de detalhes do arquivo
     } catch (error: any) {
-      console.error('Erro ao enviar arquivo:', error.message);
+      console.error('Erro ao enviar o arquivo:', error.message);
+      setLoading(false); // Desativar o loading em caso de erro
     }
   };
 
@@ -95,7 +117,6 @@ export default function Home() {
       <Main>
         <Title>
           Bem vindo ao projeto<br/>Scriptors!
-          {/*Welcome to <a href="https://nextjs.org">Next.js!</a>*/}
         </Title>
         <Description>
           Fique a vontade para explorar o projeto e fazer o upload de arquivos/contratos,<br/>
@@ -121,6 +142,7 @@ export default function Home() {
           onClose={() => setShowLoginModal(false)}
           onSuccess={handleLoginSuccess}
         />
+        <Loading show={loading} /> {/* Adicionando o componente de loading */}
       </Main>
     </Container>
   );

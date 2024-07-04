@@ -6,7 +6,7 @@ const Footer = () => {
     <FooterContainer>
       <FooterContent>
         <div>
-          <h3>Nome do seu Site</h3>
+          <h3>Scriptors</h3>
           <p>© {new Date().getFullYear()} Todos os direitos reservados.</p>
         </div>
         <FooterLinks>

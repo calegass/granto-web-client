@@ -73,6 +73,11 @@ export const ErrorMessage = styled.p`
   margin-bottom: 1rem;
 `;
 
+export const SuccessMessage = styled.p`
+  color: #00ff00;
+  margin-bottom: 1rem;
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;

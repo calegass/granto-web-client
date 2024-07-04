@@ -13,9 +13,9 @@ export const InputFile = styled.input`
 
 export const Label = styled.label`
     padding: 1.5rem;
-    color: inherit;
+    color: ${({ theme }) => theme.colors.granto_color};
     text-decoration: none;
-    border: 1px solid black;
+    border: 1px solid ${({ theme }) => theme.colors.granto_color};
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
     width: 100%;
