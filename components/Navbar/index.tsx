@@ -1,4 +1,4 @@
-import * as S from './styles';
+import * as S from '@/styles/navbar';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useAuth } from '@/context/AuthContext';

@@ -1,4 +1,4 @@
-import { Title, Description, Container, Main, Card, FlexContainer, StyledLink } from "./styles";
+import { Title, Description, Container, Main, Card, FlexContainer, StyledLink } from "../../../styles/forgot-password";
 
 export default function NotFound() {
   return (

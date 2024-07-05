@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Pagination from '../Pagination';
-import * as S from './styles';
+import * as S from '@/styles/filelistpagination';
 
 interface MyFile {
   id: string;

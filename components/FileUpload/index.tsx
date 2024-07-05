@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, ButtonContainer, FileName, FlexContainer, InputFile, Label } from './styles';
+import { Button, ButtonContainer, FileName, FlexContainer, InputFile, Label } from '@/styles/fileupload';
 
 interface FileUploadProps {
   onFileUpload: (file: File) => void;

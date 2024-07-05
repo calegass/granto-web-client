@@ -44,7 +44,7 @@ export { LoadingContainer, Spinner }*/
 // loading.index.tsx:
 
 import React from 'react';
-import { LoadingContainer, Spinner } from './styles';
+import { LoadingContainer, Spinner } from '@/styles/loading';
 
 interface LoadingProps {
   show: boolean;

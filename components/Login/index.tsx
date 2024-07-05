@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import * as S from './styles';
+import * as S from '@/styles/login';
 import { useAuth } from '@/context/AuthContext';
 
 interface LoginProps {
