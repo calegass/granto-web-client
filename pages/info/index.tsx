@@ -38,19 +38,18 @@ export default function Infos() {
         <Section id="section1">
           <h2>Quem somos:</h2>
           <p>Os integrantes da equipe são:<br/><br/>
-          <br/>
-          <img src="/icon.png" alt="Matheus Calegari Moizinho" width="200" height="200"/><br/>
-          Matheus Calegari Moizinho - <a href="https://www.linkedin.com/in/matheus-calegari/">LinkedIn</a><br/>
+            <br/>
+            Matheus Calegari Moizinho - <a href="https://www.linkedin.com/in/matheus-calegari/">LinkedIn</a><br/>
 
-          <br/>
-          Rangel<br/>
-          <br/>
-          <img src="/icon.png" alt="Matheus Calegari Moizinho" width="200" height="200"/><br/>
-          <br/>
-          Caroni<br/>
-          <br/>
-          <img src="/icon.png" alt="Matheus Calegari Moizinho" width="200" height="200"/><br/>
-          <br/>
+            <br/>
+            Rangel Neves Souza - <a href="https://www.linkedin.com/in/rangelneves/">LinkedIn</a><br/>
+
+            <br/>
+            Rafael Jardim Caroni - <a href="https://www.linkedin.com/in/rafael-caroni/">LinkedIn</a><br/>
+
+            <br/>
+            <p>Orientador: </p>Jefferson Beethoven Martins - <a href="https://www.linkedin.com/in/jefferson-beethoven-martins-7997b8261/">LinkedIn</a><br/>
+
           </p>
         </Section>
         <Section id="section2">
