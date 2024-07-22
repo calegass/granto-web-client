@@ -159,3 +159,10 @@ export const CloseButton = styled.button`
   color: #ffffff;
   cursor: pointer;
 `;
+
+export const Span = styled.span`
+  font-size: 12px;
+  margin-bottom: 2px;
+  text-align: center;
+  color: #ffffff;
+`;

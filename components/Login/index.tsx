@@ -10,8 +10,8 @@ interface LoginProps {
 
 const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
   const { login, signup } = useAuth();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('default@example.com');
+  const [password, setPassword] = useState('default');
   const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
   const modalRef = useRef<HTMLDivElement>(null);
@@ -75,6 +75,8 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
         {/*<S.CloseButton onClick={onClose}>&times;</S.CloseButton>*/}
         <S.Form>
           <S.Title>Faça o seu login ou registre-se</S.Title>
+          <S.Span>Usuário para testes: default@example.com</S.Span>
+          <S.Span>Senha para testes: default</S.Span>
           {error && <S.ErrorMessage>{error}</S.ErrorMessage>}
           {successMessage && <S.SuccessMessage>{successMessage}</S.SuccessMessage>}
           <input
