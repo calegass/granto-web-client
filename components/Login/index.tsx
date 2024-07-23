@@ -45,7 +45,7 @@ const Login: React.FC<LoginProps> = ({ isOpen, onClose, onSuccess }) => {
 
     try {
       await login(email, password);
-      console.log(localStorage.getItem('token'));
+      // console.log(localStorage.getItem('token'));
       console.log('Login bem-sucedido');
       onSuccess();
     } catch (error: any) {

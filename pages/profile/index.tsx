@@ -39,12 +39,15 @@ const Profile = () => {
 
   useEffect(() => {
     const fetchUserFiles = async () => {
+      // console.log("Profile: ");
+      // console.log(localStorage.getItem('token'));
       try {
-        const response = await axiosInstance.get('/user_files', {
+        const response = await axiosInstance.get('/user_files',  {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
-        });
+        }
+      );
         setFiles(response.data); // Define os arquivos recebidos do backend no estado local
       } catch (error) {
         console.error('Erro ao buscar arquivos do usuário:', error);

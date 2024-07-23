@@ -39,12 +39,11 @@ export default function Home() {
         'Vigência do contrato.'
         
       );
-    formData.append('user_id', localStorage.getItem('token') || 'token-not-found');
-
     try {
       const response = await axiosInstance.post('/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
 

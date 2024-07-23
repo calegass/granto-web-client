@@ -6,8 +6,8 @@ export const login = async (email: string, password: string) => {
   try {
     const response = await axiosInstance.post('/login', { email, password });
 
-    console.log(response);
-    console.log(response.data.token);
+    // console.log(response);
+    // console.log(response.data.token);
 
     return response.data.token;
 
@@ -20,8 +20,8 @@ export const signup = async (email: string, password: string) => {
   try {
     const response = await axiosInstance.post("/signup", { email, password });
 
-    console.log(response);
-    console.log(response.data.message);
+    // console.log(response);
+    // console.log(response.data.message);
 
   } catch (error: any) {
     throw new Error(error.response?.data?.message || error.message);
